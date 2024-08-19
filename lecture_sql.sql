@@ -120,3 +120,37 @@ SELECT * FROM person;
 select * from task order by person_id desc;
 
 select t.PERSON_ID, count(t.id) from task t group by t.PERSON_ID;
+
+CREATE TABLE _GROUP(
+ID INT NOT NULL primary KEY auto_increment,
+GROUP_NAME VARCHAR(255) NOT NULL
+);
+
+insert into _group(group_name) values('Java');
+insert into _group(group_name) values('C#');
+
+
+select * FROM _group;
+
+create table PERSONS_GROUPS(
+ID INT NOT NULL primary KEY auto_increment,
+PERSON_ID INT NOT NULL,
+GROUP_ID INT NOT NULL,
+foreign key (PERSON_ID) references person(ID),
+foreign key (GROUP_ID) references _group(ID)
+);
+
+
+insert into persons_groups(person_id, group_id) values(1, 1);
+insert into persons_groups(person_id, group_id) values(1, 2);
+insert into persons_groups(person_id, group_id) values(2, 1);
+insert into persons_groups(person_id, group_id) values(2, 2);
+
+select * FROM persons_groups;
+
+
+
+
+
+
+
